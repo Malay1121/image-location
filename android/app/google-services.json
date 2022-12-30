@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "400116173837",
+    "project_id": "image-location-1e578",
+    "storage_bucket": "image-location-1e578.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400116173837:android:d1dcf746a359edc38bd944",
+        "android_client_info": {
+          "package_name": "com.malay.imagelocation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400116173837-6u6oo98uqgf8jo6msedfo59mthamumbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB--81iLg8oFnahk_81SydcXkkKCF7BzS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400116173837-6u6oo98uqgf8jo6msedfo59mthamumbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
