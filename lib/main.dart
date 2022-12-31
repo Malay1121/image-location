@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_location/screens/homepage.dart';
+import 'package:image_location/screens/signup.dart';
 
 void main() async {
-  runApp(const MyApp());
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await GetStorage.init();
+  runApp(const MyApp());
 }
 
 final getStorage = GetStorage();
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: SignupScreen(),
     );
   }
 }

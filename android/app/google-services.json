@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:400116173837:android:d1dcf746a359edc38bd944",
+        "mobilesdk_app_id": "1:400116173837:android:c4c08bfc70db20a08bd944",
         "android_client_info": {
-          "package_name": "com.malay.imagelocation"
+          "package_name": "com.example.image_location"
         }
       },
       "oauth_client": [
