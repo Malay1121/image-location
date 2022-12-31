@@ -19,6 +19,8 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController ageController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -48,6 +50,9 @@ class _SignupScreenState extends State<SignupScreen> {
             controller: emailController,
           ),
           TextField(
+            controller: usernameController,
+          ),
+          TextField(
             controller: ageController,
           ),
           TextField(
@@ -65,6 +70,8 @@ class _SignupScreenState extends State<SignupScreen> {
               getStorage.write('email', emailController.text);
               getStorage.write('password', passwordController.text);
               getStorage.write('age', ageController.text);
+              getStorage.write('username', usernameController.text);
+
               getStorage.write('image', '');
 
               await FirebaseFirestore.instance
@@ -75,7 +82,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 'secondName': secondNameController.text,
                 'age': ageController.text,
                 'image': '',
-                'preferences': {'all': 100}
+                'preferences': {'all': 100},
+                'username': usernameController.text,
               }).then((value) => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomePage())));
             },

@@ -30,27 +30,44 @@ class HomePageState extends State<HomePage> {
             child: ListView(
               shrinkWrap: true,
               children: [
-                for (var doc in getStorage.read('feed') == null
-                    ? ['BANzp3KsOVCqCsGcQBKC']
+                for (var doc in getStorage.read('feed').toString() == null
+                    ? '["BDdlKDzBMvoO4bStBmIk"]'
                     : getStorage.read('feed'))
                   FutureBuilder(
                     future: FirebaseFirestore.instance
                         .collection('posts')
-                        .doc(doc.id)
+                        .doc(doc.toString())
                         .get(),
                     builder: ((context, snapshot1) {
                       return Column(
                         children: [
                           Image.network(
-                            'https://firebasestorage.googleapis.com/v0/b/image-location-1e578.appspot.com/o/${snapshot1.data!.id + snapshot1.data!["creator"]}.png?alt=media',
+                            snapshot1.data == null
+                                ? 'https://www.citypng.com/public/uploads/preview/loading-load-icon-transparent-png-11639609114lctjenyas8.png'
+                                : 'https://firebasestorage.googleapis.com/v0/b/image-location-1e578.appspot.com/o/${snapshot1.data!.id + snapshot1.data!["creator"]}.png?alt=media',
                           ),
-                          Text(snapshot1.data == null
-                              ? 'wait'
-                              : snapshot1.data!['creator']),
+                          FutureBuilder(
+                              future: FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc(snapshot1.data == null
+                                      ? 'mfRqKsYswphcNGidMcAzrqRAJFq2'
+                                      : snapshot1.data!['creator'])
+                                  .get(),
+                              builder: (context, snapshot2) {
+                                return Text(snapshot2.data == null
+                                    ? 'wait'
+                                    : snapshot2.data!['username']);
+                              }),
                         ],
                       );
                     }),
                   ),
+                GestureDetector(
+                  onTap: () {
+                    print(getStorage.read('feed'));
+                  },
+                  child: Text('Hehe'),
+                ),
               ],
             ),
           ),
@@ -82,6 +99,7 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> generateFeed() async {
+    getStorage.write('feed', []);
     await FirebaseFirestore.instance
         .collection('users')
         .doc(getStorage.read('id'))
@@ -94,7 +112,15 @@ class HomePageState extends State<HomePage> {
             .where('categories', arrayContains: key.toString())
             .get()
             .then((value) {
-          getStorage.write('feed', value.docs);
+          print(value.docs);
+
+          List feed = [];
+          value.docs.forEach((element) {
+            setState(() {
+              feed.add(element.id);
+            });
+          });
+          getStorage.write('feed', feed);
         });
       }
     });
