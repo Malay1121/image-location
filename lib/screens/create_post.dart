@@ -69,7 +69,7 @@ class _CreatePostState extends State<CreatePost> {
   //   String url = (await ref.getDownloadURL()).toString();
 
   // await firebaseFirestore
-  //     .collection("products")
+  //     .collection("posts")
   //     .doc(productNameController.text + user.uid)
   //     .set(productModel.toMap());
   // }
