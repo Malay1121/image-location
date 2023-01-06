@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 getStorage.write('password', passwordController.text);
                 getStorage.write('age', value['age']);
                 getStorage.write('image', '');
-                getStorage.write('age', value['username']);
+                getStorage.write('username', value['username']);
 
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
